@@ -1,0 +1,31 @@
+// src/components/SessionManager.tsx
+import React, { useState } from 'react';
+
+const SessionManager: React.FC = () => {
+  const [sessionId, setSessionId] = useState('');
+
+  const handleCreateSession = () => {
+    const newSessionId = Math.random().toString(36).substr(2, 9);
+    setSessionId(newSessionId);
+    // Redirect to whiteboard with new session ID
+  };
+
+  const handleJoinSession = () => {
+    // Redirect to whiteboard with existing session ID
+  };
+
+  return (
+    <div>
+      <button onClick={handleCreateSession}>Create New Session</button>
+      <input
+        type="text"
+        value={sessionId}
+        onChange={(e) => setSessionId(e.target.value)}
+        placeholder="Enter Session ID"
+      />
+      <button onClick={handleJoinSession}>Join Session</button>
+    </div>
+  );
+};
+
+export default SessionManager;
