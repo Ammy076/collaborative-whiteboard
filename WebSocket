@@ -1,0 +1,13 @@
+// src/services/WebSocketService.ts
+export const initWebSocket = (onMessageReceived: (message: any) => void) => {
+  const ws = new WebSocket('ws://localhost:8080');
+
+  ws.onopen = () => console.log('Connected to WebSocket');
+
+  ws.onmessage = (event) => {
+    const message = JSON.parse(event.data);
+    onMessageReceived(message);
+  };
+
+  return ws;
+};
