@@ -1,0 +1,19 @@
+// src/components/SaveButton.tsx
+import React from 'react';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+
+const SaveButton: React.FC = () => {
+  const handleSave = async () => {
+    const canvas = await html2canvas(document.querySelector('#whiteboard')!);
+    const imgData = canvas.toDataURL('image/png');
+
+    const pdf = new jsPDF();
+    pdf.addImage(imgData, 'PNG', 0, 0);
+    pdf.save('whiteboard.pdf');
+  };
+
+  return <button onClick={handleSave}>Save as PDF</button>;
+};
+
+export default SaveButton;
